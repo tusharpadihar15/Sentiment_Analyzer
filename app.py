@@ -11,17 +11,9 @@ import base64
 nltk.download('punkt')
 nltk.download('stopwords')
 
+# Function for putting background image 
 def set_bg_hack(main_bg):
-    '''
-    A function to unpack an image from root folder and set as bg.
- 
-    Returns
-    -------
-    The background.
-    '''
-    # set bg name
-    main_bg_ext = "png"
-        
+    main_bg_ext = "jpg"
     st.markdown(#"stHeader"
          f"""
          <style>
@@ -46,27 +38,17 @@ def preprocess_text(text):
     preprocessed_text = ' '.join(tokens)
     return preprocessed_text
 
-# Load the saved model
+# Load the saved model using joblib
 model = load('model.joblib')
 vectorizer = model[1]
 
-# Define Streamlit app
+# Streamlit app
 def main():
-    page_bg_img = '''
-    <style>
-    body {
-    background-image: url("https://unsplash.com/photos/purple-gradient-bexwsdM5BCw");
-    background-size: cover;
-    }
-    </style>
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
     st.title("Sentiment Analysis")
-
-    # User input text area
+    # Taking input from user
     user_input = st.text_area("Enter your text:", "")
 
-    # Make prediction when the user submits the input
+    # Making prediction using the model
     if st.button("Predict"):
         # Preprocess input text
         preprocessed_input = preprocess_text(user_input)
