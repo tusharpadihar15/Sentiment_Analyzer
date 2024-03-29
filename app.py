@@ -8,6 +8,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
 import base64
+nltk.download('punkt')
+nltk.download('stopwords')
 
 def set_bg_hack(main_bg):
     '''
